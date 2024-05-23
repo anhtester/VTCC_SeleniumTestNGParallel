@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Parallel Module Test" verbose="1" parallel="tests">
+    <test name="Parallel Test 1">
+        <classes>
+            <class name="com.anhtester.Bai25_ParallelExecution.ChromeTest" />
+            <class name="com.anhtester.Bai25_ParallelExecution.EdgeTest" />
+        </classes>
+    </test>
+
+    <test name="Parallel Test 2">
+        <classes>
+            <class name="com.anhtester.Bai25_ParallelExecution.ChromeTest" />
+            <class name="com.anhtester.Bai25_ParallelExecution.EdgeTest" />
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite Parallel Test" verbose="1">
+    <test name="Parallel Test By Class" parallel="classes">
+        <classes>
+            <class name="com.anhtester.Bai25_ParallelExecution.ChromeTest" />
+            <class name="com.anhtester.Bai25_ParallelExecution.EdgeTest" />
+        </classes>
+    </test>
+</suite>
