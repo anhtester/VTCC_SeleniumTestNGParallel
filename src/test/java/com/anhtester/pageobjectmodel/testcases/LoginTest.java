@@ -8,21 +8,11 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-    CommonPage commonPage;
     LoginPage loginPage;
-
-    @BeforeMethod
-    public void setupPage(){
-        commonPage = new CommonPage(driver);
-    }
 
     @Test(priority = 1)
     public void testLoginSuccess(){
-//        commonPage.getLoginPage().loginCRM("admin@example.com", "123456");
-//        commonPage.getLoginPage().verifyLoginSuccess();
-//        commonPage.logout();
-
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         loginPage.loginCRM("admin@example.com", "123456");
         loginPage.verifyLoginSuccess();
         loginPage.logout();
@@ -31,7 +21,7 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 2)
     public void testLoginFailWithEmailInvalid(){
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
 
         loginPage.loginCRM("admin@email.com", "123456");
         loginPage.verifyLoginFail("Invalid email or password");
@@ -39,7 +29,7 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 3)
     public void testLoginFailWithEmailNull(){
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
 
         loginPage.loginCRM("", "123456");
         loginPage.verifyLoginFail("The Email Address field is required.");
@@ -47,7 +37,7 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 4)
     public void testLoginFailWithPasswordInvalid(){
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
 
         loginPage.loginCRM("admin@example.com", "123");
         loginPage.verifyLoginFail("Invalid email or password");
@@ -55,7 +45,7 @@ public class LoginTest extends BaseTest {
 
     @Test(priority = 5)
     public void testLoginFailWithPasswordNull(){
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
 
         loginPage.loginCRM("admin@example.com", "");
         loginPage.verifyLoginFail("The Password field is required.");

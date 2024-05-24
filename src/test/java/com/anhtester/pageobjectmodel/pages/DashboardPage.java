@@ -6,12 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class DashboardPage extends CommonPage {
-    private WebDriver driver;
 
-    public DashboardPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-        new WebUI(driver);
+    public DashboardPage() {
     }
 
     private By labelTotalTasksNotFinished = By.xpath("((//div[@class='top_stats_wrapper'])[4]//span)[2]");
@@ -29,6 +25,7 @@ public class DashboardPage extends CommonPage {
     }
 
     public void verifyTotalOfTasksNotFinished(String totalValue) {
+        WebUI.waitForPageLoaded();
         String total = WebUI.getElementText(labelTotalTasksNotFinished);
         WebUI.logConsole("Total Actual: " + total);
         Assert.assertEquals(total, totalValue, "The total of Tasks Not Finished not match.");

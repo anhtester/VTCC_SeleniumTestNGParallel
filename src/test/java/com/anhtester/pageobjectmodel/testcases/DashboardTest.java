@@ -13,7 +13,7 @@ public class DashboardTest extends BaseTest {
 
     @Test
     public void testOpenPage(){
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         dashboardPage = loginPage.loginCRM("admin@example.com", "123456");
 
         dashboardPage.openPage("Customers");
@@ -26,7 +26,7 @@ public class DashboardTest extends BaseTest {
 
     @Test
     public void testLogout(){
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         loginPage.loginCRM("admin@example.com", "123456");
         loginPage.logout();
         loginPage.verifyRedirectToLoginPage();
@@ -34,9 +34,9 @@ public class DashboardTest extends BaseTest {
 
     @Test
     public void testTotalOfTasksNotFinished(){
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
         loginPage.loginCRM("admin@example.com", "123456");
-        dashboardPage = new DashboardPage(driver);
+        dashboardPage = new DashboardPage();
         dashboardPage.verifyRedirectToDashboardPage();
         dashboardPage.verifyTotalOfTasksNotFinished("1 / 1");
     }

@@ -1,5 +1,6 @@
 package com.anhtester.common;
 
+import com.anhtester.drivers.DriverManager;
 import com.anhtester.keywords.WebUI;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,11 +14,12 @@ import org.testng.annotations.Parameters;
 import java.time.Duration;
 
 public class BaseTest {
-    public WebDriver driver;
 
     @BeforeMethod
     @Parameters({"browserName"})
     public void createDriver(@Optional("chrome") String browserName) {
+
+        WebDriver driver;
 
         switch (browserName.trim().toLowerCase()) {
             case "chrome":
@@ -37,15 +39,15 @@ public class BaseTest {
                 driver = new ChromeDriver();
         }
 
-        driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
+        DriverManager.setDriver(driver); //Set to ThreadLocal
 
-        new WebUI(driver);
+        DriverManager.getDriver().manage().window().maximize();
+        DriverManager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
     }
 
     @AfterMethod
     public void closeDriver() {
-        driver.quit();
+        DriverManager.quit();
     }
 
 }

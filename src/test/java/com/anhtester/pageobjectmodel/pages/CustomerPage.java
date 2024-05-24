@@ -6,12 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class CustomerPage extends CommonPage {
-    private WebDriver driver;
 
-    public CustomerPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-        new WebUI(driver);
+    public CustomerPage() {
     }
 
     private By headerPage = By.xpath("//span[normalize-space()='Customers Summary']");
@@ -48,7 +44,7 @@ public class CustomerPage extends CommonPage {
     }
 
     public CustomerPage verifyAddNewCustomer(String company) {
-        new DashboardPage(driver).openCustomerPage();
+        new DashboardPage().openCustomerPage();
         WebUI.waitForPageLoaded();
         WebUI.setText(inputSearch, company);
         WebUI.waitForPageLoaded();

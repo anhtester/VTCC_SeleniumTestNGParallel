@@ -12,7 +12,7 @@ public class CustomerTest extends BaseTest {
     public void testAddNewCustomer() {
         String CUSTOMER_NAME = "VTCC Viettel 09/05 A1";
 
-        loginPage = new LoginPage(driver);
+        loginPage = new LoginPage();
 
         //Fluent design pattern
         loginPage.loginCRM("admin@example.com", "123456")

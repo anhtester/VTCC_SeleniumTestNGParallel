@@ -1,6 +1,7 @@
 package com.anhtester.Bai25_ParallelExecution;
 
 import com.anhtester.common.BaseTest;
+import com.anhtester.drivers.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,9 +12,9 @@ import java.time.Duration;
 public class CRMTest extends BaseTest {
     @Test
     public void loginCRM() {
-        driver.get("https://crm.anhtester.com/admin/authentication");
-        driver.findElement(By.xpath("//input[@id='email']")).sendKeys("admin@example.com");
-        driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
-        driver.findElement(By.xpath("//button[normalize-space()='Login']")).click();
+        DriverManager.getDriver().get("https://crm.anhtester.com/admin/authentication");
+        DriverManager.getDriver().findElement(By.xpath("//input[@id='email']")).sendKeys("admin@example.com");
+        DriverManager.getDriver().findElement(By.xpath("//input[@id='password']")).sendKeys("123456");
+        DriverManager.getDriver().findElement(By.xpath("//button[normalize-space()='Login']")).click();
     }
 }

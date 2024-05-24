@@ -6,11 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class CommonPage {
 
-    WebDriver driver;
-
-    public CommonPage(WebDriver driver) {
-        this.driver = driver;
-        new WebUI(driver);
+    public CommonPage() {
     }
 
     public By inputSearch = By.xpath("//input[@id='search_input']");
@@ -24,7 +20,7 @@ public class CommonPage {
         WebUI.clickElement(menuCustomer);
         WebUI.waitForPageLoaded();
 
-        return new CustomerPage(driver);
+        return new CustomerPage();
     }
 
     public void openProjectPage() {
@@ -38,7 +34,7 @@ public class CommonPage {
         WebUI.clickElement(itemLogout);
         WebUI.waitForPageLoaded();
 
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 
     public void searchCommon(String text){
@@ -52,21 +48,21 @@ public class CommonPage {
 
     public LoginPage getLoginPage() {
         if (loginPage == null) {
-            loginPage = new LoginPage(driver);
+            loginPage = new LoginPage();
         }
         return loginPage;
     }
 
     public DashboardPage getDashboardPage() {
         if (dashboardPage == null) {
-            dashboardPage = new DashboardPage(driver);
+            dashboardPage = new DashboardPage();
         }
         return dashboardPage;
     }
 
     public CustomerPage getCustomerPage() {
         if (customerPage == null) {
-            customerPage = new CustomerPage(driver);
+            customerPage = new CustomerPage();
         }
         return customerPage;
     }
