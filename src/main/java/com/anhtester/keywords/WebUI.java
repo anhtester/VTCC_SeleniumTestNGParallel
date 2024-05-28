@@ -1,6 +1,7 @@
 package com.anhtester.keywords;
 
 import com.anhtester.drivers.DriverManager;
+import com.anhtester.helpers.PropertiesHelper;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -15,15 +16,9 @@ import java.util.List;
 
 public class WebUI {
 
-    //private static WebDriver DriverManager.getDriver();
-    private static int TIMEOUT = 10;
-    private static int PAGE_LOAD_TIMEOUT = 30;
-    private static double STEP_TIME = 0;
-
-    //Nhận driver từ BaseTest truyền vào
-//    public WebUI(WebDriver _driver) {
-//        driver = _DriverManager.getDriver();
-//    }
+    private static int TIMEOUT = Integer.parseInt(PropertiesHelper.getValue("EXPLICIT_WAIT_TIMEOUT"));
+    private static int PAGE_LOAD_TIMEOUT = Integer.parseInt(PropertiesHelper.getValue("PAGE_LOAD_TIMEOUT"));
+    private static double STEP_TIME = Double.parseDouble(PropertiesHelper.getValue("STEP_TIME"));
 
     public static void sleep(double second) {
         try {
@@ -389,9 +384,9 @@ public class WebUI {
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
 
         //Wait for jQuery to load
-        ExpectedCondition < Boolean > jQueryLoad = driver -> {
+        ExpectedCondition<Boolean> jQueryLoad = driver -> {
             assert driver != null;
-            return ((Long)((JavascriptExecutor) driver)
+            return ((Long) ((JavascriptExecutor) driver)
                     .executeScript("return jQuery.active") == 0);
         };
 
@@ -422,7 +417,7 @@ public class WebUI {
         final String angularReadyScript = "return angular.element(document).injector().get('$http').pendingRequests.length === 0";
 
         //Wait for ANGULAR to load
-        ExpectedCondition < Boolean > angularLoad = driver -> {
+        ExpectedCondition<Boolean> angularLoad = driver -> {
             assert driver != null;
             return Boolean.valueOf(((JavascriptExecutor) driver)
                     .executeScript(angularReadyScript).toString());

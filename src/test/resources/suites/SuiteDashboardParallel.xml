@@ -4,7 +4,7 @@
     <test name="Login Test Parallel" parallel="methods">
         <parameter name="browserName" value="edge"/>
         <classes>
-            <class name="com.anhtester.pageobjectmodel.testcases.DashboardTest" />
+            <class name="com.anhtester.Bai26_ParallelPageObject.testcases.DashboardTest" />
         </classes>
     </test>
 </suite>

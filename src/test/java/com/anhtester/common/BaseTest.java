@@ -1,6 +1,7 @@
 package com.anhtester.common;
 
 import com.anhtester.drivers.DriverManager;
+import com.anhtester.helpers.PropertiesHelper;
 import com.anhtester.keywords.WebUI;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -20,6 +21,12 @@ public class BaseTest {
     public void createDriver(@Optional("chrome") String browserName) {
 
         WebDriver driver;
+
+        if(PropertiesHelper.getValue("BROWSER").isEmpty() || PropertiesHelper.getValue("BROWSER") == null){
+            browserName = browserName;
+        }else {
+            browserName = PropertiesHelper.getValue("BROWSER");
+        }
 
         switch (browserName.trim().toLowerCase()) {
             case "chrome":
@@ -42,7 +49,7 @@ public class BaseTest {
         DriverManager.setDriver(driver); //Set to ThreadLocal
 
         DriverManager.getDriver().manage().window().maximize();
-        DriverManager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
+        DriverManager.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Long.parseLong(PropertiesHelper.getValue("PAGE_LOAD_TIMEOUT"))));
     }
 
     @AfterMethod

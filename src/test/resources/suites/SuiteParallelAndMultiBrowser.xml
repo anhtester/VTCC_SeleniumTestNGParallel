@@ -4,19 +4,19 @@
     <test name="Login Test Parallel CHROME" parallel="methods">
         <parameter name="browserName" value="chrome"/>
         <classes>
-            <class name="com.anhtester.pageobjectmodel.testcases.LoginTest" />
+            <class name="com.anhtester.Bai26_ParallelPageObject.testcases.LoginTest" />
         </classes>
     </test>
     <test name="Login Test Parallel EDGE" parallel="methods">
         <parameter name="browserName" value="edge"/>
         <classes>
-            <class name="com.anhtester.pageobjectmodel.testcases.DashboardTest" />
+            <class name="com.anhtester.Bai26_ParallelPageObject.testcases.DashboardTest" />
         </classes>
     </test>
     <test name="Login Test Parallel FIREFOX" parallel="methods">
         <parameter name="browserName" value="firefox"/>
         <classes>
-            <class name="com.anhtester.pageobjectmodel.testcases.CustomerTest" />
+            <class name="com.anhtester.Bai26_ParallelPageObject.testcases.CustomerTest" />
         </classes>
     </test>
 </suite>

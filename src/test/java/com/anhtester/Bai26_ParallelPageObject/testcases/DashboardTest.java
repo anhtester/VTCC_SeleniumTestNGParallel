@@ -1,8 +1,8 @@
-package com.anhtester.pageobjectmodel.testcases;
+package com.anhtester.Bai26_ParallelPageObject.testcases;
 
 import com.anhtester.keywords.WebUI;
-import com.anhtester.pageobjectmodel.pages.DashboardPage;
-import com.anhtester.pageobjectmodel.pages.LoginPage;
+import com.anhtester.Bai26_ParallelPageObject.pages.DashboardPage;
+import com.anhtester.Bai26_ParallelPageObject.pages.LoginPage;
 import com.anhtester.common.BaseTest;
 import org.testng.annotations.Test;
 

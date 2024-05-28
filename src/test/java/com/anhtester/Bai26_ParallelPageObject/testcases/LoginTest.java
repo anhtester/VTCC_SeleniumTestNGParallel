@@ -1,9 +1,7 @@
-package com.anhtester.pageobjectmodel.testcases;
+package com.anhtester.Bai26_ParallelPageObject.testcases;
 
-import com.anhtester.pageobjectmodel.pages.CommonPage;
-import com.anhtester.pageobjectmodel.pages.LoginPage;
+import com.anhtester.Bai26_ParallelPageObject.pages.LoginPage;
 import com.anhtester.common.BaseTest;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {

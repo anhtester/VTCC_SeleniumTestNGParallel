@@ -3,7 +3,7 @@
 <suite name="Suite" verbose="1">
     <test name="FirstTest">
         <classes>
-            <class name="com.anhtester.pageobjectmodel.testcases.LoginTest" />
+            <class name="com.anhtester.Bai26_ParallelPageObject.testcases.LoginTest" />
         </classes>
     </test>
 </suite>

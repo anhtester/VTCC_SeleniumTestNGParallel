@@ -4,7 +4,7 @@
     <test name="Login Test Parallel" parallel="methods">
         <parameter name="browserName" value="chrome"/>
         <classes>
-            <class name="com.anhtester.pageobjectmodel.testcases.LoginTest" />
+            <class name="com.anhtester.Bai26_ParallelPageObject.testcases.LoginTest" />
         </classes>
     </test>
 </suite>

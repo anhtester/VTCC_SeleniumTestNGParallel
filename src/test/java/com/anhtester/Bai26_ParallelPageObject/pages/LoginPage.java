@@ -1,8 +1,8 @@
-package com.anhtester.pageobjectmodel.pages;
+package com.anhtester.Bai26_ParallelPageObject.pages;
 
+import com.anhtester.helpers.PropertiesHelper;
 import com.anhtester.keywords.WebUI;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 public class LoginPage extends CommonPage {
@@ -19,7 +19,7 @@ public class LoginPage extends CommonPage {
     private By errorMessage = By.xpath("//div[contains(@class,'alert alert-danger')]");
 
     public DashboardPage loginCRM(String email, String password) {
-        WebUI.openURL(URL);
+        WebUI.openURL(PropertiesHelper.getValue("URL"));
         WebUI.waitForPageLoaded();
         WebUI.setText(inputEmail, email);
         WebUI.setText(inputPassword, password);
