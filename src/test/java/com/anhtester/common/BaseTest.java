@@ -7,14 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
 public class BaseTest {
+
+    @BeforeSuite
+    public void setupData() {
+        PropertiesHelper.loadAllFiles();
+    }
 
     @BeforeMethod
     @Parameters({"browserName"})
@@ -22,9 +24,7 @@ public class BaseTest {
 
         WebDriver driver;
 
-        if(PropertiesHelper.getValue("BROWSER").isEmpty() || PropertiesHelper.getValue("BROWSER") == null){
-            browserName = browserName;
-        }else {
+        if (!PropertiesHelper.getValue("BROWSER").isEmpty() || PropertiesHelper.getValue("BROWSER") != null) {
             browserName = PropertiesHelper.getValue("BROWSER");
         }
 
