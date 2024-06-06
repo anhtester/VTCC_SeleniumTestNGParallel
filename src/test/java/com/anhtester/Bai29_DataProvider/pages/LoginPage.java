@@ -1,5 +1,6 @@
 package com.anhtester.Bai29_DataProvider.pages;
 
+import com.anhtester.helpers.CaptureHelper;
 import com.anhtester.helpers.PropertiesHelper;
 import com.anhtester.keywords.WebUI;
 import org.openqa.selenium.By;
