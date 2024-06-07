@@ -22,7 +22,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyRedirectToLoginPage();
     }
 
-    @Test(priority = 1, dataProvider = "data_provider_login_excel", dataProviderClass = DataProviderFactory.class)
+    @Test(priority = 2, dataProvider = "data_provider_login_excel", dataProviderClass = DataProviderFactory.class)
     public void testLoginSuccessFromExcel(String email, String password){
         loginPage = new LoginPage();
         loginPage.loginCRM(email, password);
@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
         loginPage.verifyRedirectToLoginPage();
     }
 
-    @Test(priority = 1, dataProvider = "data_provider_login_excel_multi_row", dataProviderClass = DataProviderFactory.class)
+    @Test(priority = 3, dataProvider = "data_provider_login_excel_multi_row", dataProviderClass = DataProviderFactory.class)
     public void testLoginSuccessFromExcelHashtable(Hashtable<String, String> data){
         loginPage = new LoginPage();
         loginPage.loginCRM(data.get("EMAIL"), data.get("PASSWORD"));

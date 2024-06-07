@@ -4,6 +4,7 @@ import com.anhtester.drivers.DriverManager;
 import com.anhtester.helpers.CaptureHelper;
 import com.anhtester.helpers.PropertiesHelper;
 import com.anhtester.keywords.WebUI;
+import com.anhtester.listeners.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,12 +14,8 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
+@Listeners({TestListener.class})
 public class BaseTest {
-
-    @BeforeSuite
-    public void setupData() {
-        PropertiesHelper.loadAllFiles();
-    }
 
     @BeforeMethod
     @Parameters({"browserName"})
@@ -56,14 +53,6 @@ public class BaseTest {
 
     @AfterMethod
     public void closeDriver(ITestResult iTestResult) {
-
-        if(iTestResult.getStatus() == ITestResult.FAILURE){
-            CaptureHelper.captureScreenshot("TestCaseFailed");
-        }
-
-        WebUI.sleep(2);
-        CaptureHelper.stopRecord();
-
         DriverManager.quit();
     }
 

@@ -41,7 +41,7 @@ public class DemoScreenshot extends BaseTest {
     public void testHomePage2() {
         DriverManager.getDriver().get("https://hrm.anhtester.com/");
         WebUI.waitForPageLoaded();
-        CaptureHelper.captureScreenshot("LoginPageHRM");
+        //CaptureHelper.captureScreenshot("LoginPageHRM");
     }
 
     LoginPage loginPage;
@@ -49,7 +49,7 @@ public class DemoScreenshot extends BaseTest {
     public void testLoginSuccess(String email, String password){
         loginPage = new LoginPage();
 
-        CaptureHelper.startRecord("testLoginSuccess");
+        //CaptureHelper.startRecord("testLoginSuccess");
 
         loginPage.loginCRM(email, password);
         loginPage.verifyLoginSuccess();
@@ -63,7 +63,7 @@ public class DemoScreenshot extends BaseTest {
 
         loginPage = new LoginPage();
 
-        CaptureHelper.startRecord("testAddNewCustomer");
+        //CaptureHelper.startRecord("testAddNewCustomer");
 
         loginPage.loginCRM("admin@example.com", "123456")
                 .openCustomerPage()
