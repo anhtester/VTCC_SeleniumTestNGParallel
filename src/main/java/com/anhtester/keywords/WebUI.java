@@ -4,7 +4,11 @@ import com.anhtester.drivers.DriverManager;
 import com.anhtester.helpers.CaptureHelper;
 import com.anhtester.helpers.PropertiesHelper;
 import com.anhtester.helpers.SystemHelper;
+import com.anhtester.reports.AllureManager;
+import com.anhtester.reports.ExtentTestManager;
 import com.anhtester.utils.LogUtils;
+import com.aventstack.extentreports.Status;
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -52,47 +56,63 @@ public class WebUI {
         }
     }
 
+    @Step("Open Url: {0}")
     public static void openURL(String url) {
         DriverManager.getDriver().get(url);
         sleep(STEP_TIME);
         LogUtils.info("Open Url: " + url);
+        ExtentTestManager.logMessage(Status.PASS, "Open URL: " + url);
     }
 
+    @Step("Click element {0}")
     public static void clickElement(By by) {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(by).click();
-        LogUtils.info("Click element: " + by);
+        LogUtils.info("Click element " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Click on element " + by);
     }
 
+    @Step("Click element {0} with timeout {1}")
     public static void clickElement(By by, int timeout) {
         waitForElementToBeClickable(by, timeout);
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(by).click();
         LogUtils.info("Click element: " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Click on element " + by);
     }
 
+    @Step("Set text {1} on element {0}")
     public static void setText(By by, String value) {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         DriverManager.getDriver().findElement(by).sendKeys(value);
         LogUtils.info("Set text: " + value + " on element " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Set text " + value + " on element " + by);
     }
 
+    @Step("Get text of element {0}")
     public static String getElementText(By by) {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         String text = DriverManager.getDriver().findElement(by).getText();
-        LogUtils.info("Get text: " + text);
-        return text; //Trả về một giá trị kiểu String
+        LogUtils.info("Get text of element " + by);
+        LogUtils.info("==> Text: " + getWebElement(by).getText());
+        AllureManager.saveTextLog("==> Text: " + getWebElement(by).getText());
+        ExtentTestManager.logMessage(Status.PASS, "Get text of element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "==> Text: " + getWebElement(by).getText());
+        return text;
     }
 
     public static String getElementAttribute(By by, String attributeName) {
         waitForElementVisible(by);
         sleep(STEP_TIME);
         String text = DriverManager.getDriver().findElement(by).getAttribute(attributeName);
-        LogUtils.info("Get attribute (" + attributeName + "): " + text);
-        return text; //Trả về một giá trị kiểu String
+        LogUtils.info("Get attribute value of element " + by);
+        LogUtils.info("==> Attribute value: " + getWebElement(by).getAttribute(attributeName));
+        ExtentTestManager.logMessage(Status.PASS, "Get attribute value of element " + by);
+        ExtentTestManager.logMessage(Status.INFO, "==> Attribute value: " + getWebElement(by).getAttribute(attributeName));
+        return text;
     }
 
     public static String getElementCssValue(By by, String propertyName) {
@@ -100,7 +120,7 @@ public class WebUI {
         sleep(STEP_TIME);
         String text = DriverManager.getDriver().findElement(by).getCssValue(propertyName);
         LogUtils.info("Get Css value (" + propertyName + "): " + text);
-        return text; //Trả về một giá trị kiểu String
+        return text;
     }
 
     public static Boolean isDisplayed(By by) {
@@ -114,6 +134,7 @@ public class WebUI {
         waitForPageLoaded();
         String currentUrl = DriverManager.getDriver().getCurrentUrl();
         LogUtils.info("Get Current URL: " + currentUrl);
+        ExtentTestManager.logMessage(Status.PASS, "Get Current URL: " + DriverManager.getDriver().getCurrentUrl());
         return currentUrl;
     }
 
@@ -154,8 +175,8 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeOut), Duration.ofMillis(500));
             wait.until(ExpectedConditions.presenceOfElementLocated(by));
         } catch (Throwable error) {
-            Assert.fail("Element not exist. " + by.toString());
             LogUtils.info("Element not exist. " + by.toString());
+            Assert.fail("Element not exist. " + by.toString());
         }
     }
 
@@ -164,8 +185,8 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(500));
             wait.until(ExpectedConditions.elementToBeClickable(getWebElement(by)));
         } catch (Throwable error) {
-            Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
             LogUtils.error("Timeout waiting for the element ready to click. " + by.toString());
+            Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
         }
     }
 
@@ -174,15 +195,16 @@ public class WebUI {
             WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(timeOut), Duration.ofMillis(500));
             wait.until(ExpectedConditions.elementToBeClickable(getWebElement(by)));
         } catch (Throwable error) {
-            Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
             LogUtils.error("Timeout waiting for the element ready to click. " + by.toString());
+            Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
         }
     }
 
     public static void setTextAndKey(By by, String value, Keys key) {
         waitForPageLoaded();
         getWebElement(by).sendKeys(value, key);
-        LogUtils.info("Set text: " + value + " on element " + by);
+        LogUtils.info("Set text " + value + " on element " + by);
+        ExtentTestManager.logMessage(Status.PASS, "Set text " + value + " on element " + by);
     }
 
     public static void scrollToElement(By element) {

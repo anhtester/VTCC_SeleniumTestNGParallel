@@ -41,3 +41,4 @@ logs/
 .idea/
 *.iml
 exports/
+allure-report/
